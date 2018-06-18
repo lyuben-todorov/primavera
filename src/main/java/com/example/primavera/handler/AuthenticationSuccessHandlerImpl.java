@@ -8,6 +8,7 @@ import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -19,11 +20,12 @@ import java.util.Collection;
             Handles redirection after successful authentication
 
  */
+@Component
 public class AuthenticationSuccessHandlerImpl
         implements AuthenticationSuccessHandler {
 
     //log
-    protected Log logger = LogFactory.getLog(this.getClass());
+    private Log logger = LogFactory.getLog(this.getClass());
 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
@@ -38,7 +40,8 @@ public class AuthenticationSuccessHandlerImpl
         clearAuthenticationAttributes(request);
     }
 
-    protected void handle(HttpServletRequest request,
+
+    private void handle(HttpServletRequest request,
                           HttpServletResponse response, Authentication authentication)
             throws IOException, ServletException {
 
@@ -54,7 +57,7 @@ public class AuthenticationSuccessHandlerImpl
         redirectStrategy.sendRedirect(request, response, targetUrl);
     }
 
-    protected String determineTargetUrl(Authentication authentication) {
+    private String determineTargetUrl(Authentication authentication) {
         boolean isUser = false;
         boolean isAdmin = false;
         Collection<? extends GrantedAuthority> authorities
@@ -72,16 +75,16 @@ public class AuthenticationSuccessHandlerImpl
 
         if (isUser) {
             //redirect users
-            return "/home.html";
+            return "/home";
         } else if (isAdmin) {
             //redirect users w/ elevated permissions
-            return "/home.html";
+            return "/home";
         } else {
             throw new IllegalStateException();
         }
     }
 
-    protected void clearAuthenticationAttributes(HttpServletRequest request) {
+    private void clearAuthenticationAttributes(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session == null) {
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -8,9 +8,11 @@
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
 
-    <title>Primavera</title>
+    <title>Successfully logged out!</title>
 </head>
 <body>
+
+
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -24,41 +26,24 @@
             <a class="navbar-brand" href="/" th:href="@{/home}">Home</a>
         </div>
 
-        <!-- Case user is logged in -->
         <ul sec:authorize="isAuthenticated()" class="nav navbar-nav navbar-right">
             <li>
-                <a href="/" th:href="@{/login?logout}">Logout</a>
+                <a href="/" th:href="@{/logout}">Logout</a>
             </li>
         </ul>
 
-
-        <!-- Case user is NOT logged in -->
         <ul sec:authorize="isAnonymous()" class="nav navbar-nav navbar-right">
             <li>
                 <a href="/" th:href="@{/login}">Login</a>
             </li>
+
         </ul>
-
-
     </div><!-- /.container-fluid -->
 </nav>
 
-
-<div class="container-fluid">
-    <h1 class="text-center">Primavera</h1>
-</div>
-
-<div class="container-fluid text-center">
-
-    <a href="/" th:href="@{/login}" class="btn btn-info btn-lg">
-        <span class="glyphicon glyphicon-log-in"></span> Log in
-    </a>
-
-
-    <a href="/" th:href="@{/register}" class="btn btn-info btn-lg">
-        <span class="glyphicon glyphicon-new-window"></span> Register
-    </a>
-</div>
+<a href="/" th:href="@{/login}" class="btn btn-info btn-lg">
+    <span class="glyphicon glyphicon-log-in"></span> Log in again
+</a>
 
 <script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
 <script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>

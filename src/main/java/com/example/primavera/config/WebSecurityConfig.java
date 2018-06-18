@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 
 
 @Configuration
@@ -18,6 +20,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AuthenticationSuccessHandler authenticationSuccessHandler;
+
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -35,12 +41,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .formLogin()
                         .loginPage("/login")
+                        .successHandler(authenticationSuccessHandler)
                             .permitAll()
                 .and()
                     .logout()
-                        .deleteCookies("JSESSIONID")
-                        .invalidateHttpSession(true)
-                            .permitAll();
+                        .permitAll();
     }
 
     @Bean
