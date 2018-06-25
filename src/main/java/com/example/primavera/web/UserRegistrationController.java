@@ -63,7 +63,6 @@ public class UserRegistrationController {
         registerAndSetSession(userDto, req);
 
 
-        
         return "redirect:/register?success";
     }
 
