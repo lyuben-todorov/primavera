@@ -1,5 +1,7 @@
 package com.example.primavera.config;
 
+import com.example.primavera.handler.AuthenticationSuccessHandlerImpl;
+import com.example.primavera.handler.LogoutSuccessHandlerImpl;
 import com.example.primavera.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,8 +12,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 @Configuration
@@ -22,8 +23,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserService userService;
 
     @Autowired
-    private AuthenticationSuccessHandler authenticationSuccessHandler;
+    private AuthenticationSuccessHandlerImpl authenticationSuccessHandler;
 
+    @Autowired
+    private LogoutSuccessHandlerImpl logoutSuccessHandler;
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -45,6 +48,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             .permitAll()
                 .and()
                     .logout()
+                .invalidateHttpSession(true)
+                .clearAuthentication(true)
+                .deleteCookies("JSESSIONID")
+                .logoutUrl("/auth_logout")
+                .logoutRequestMatcher(new AntPathRequestMatcher("/auth_logout"))
+                .logoutSuccessHandler(logoutSuccessHandler)
                         .permitAll();
     }
 
