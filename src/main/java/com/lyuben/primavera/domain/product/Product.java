@@ -1,13 +1,12 @@
-package com.lyuben.primavera.domain.product.base;
+package com.lyuben.primavera.domain.product;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
 
 @MappedSuperclass
-
+@DiscriminatorColumn(name = "DISCRIMINATOR", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue("USER")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,17 +15,35 @@ public abstract class Product {
     private String brand;
     private int price;
     private int availability;
+    private String description;
 
     public Product() {
     }
 
-    public Product(String name, String brand, int price, int availability) {
+    public Product(String name, String brand, int price, int availability, String description) {
         this.name = name;
         this.brand = brand;
         this.price = price;
         this.availability = availability;
+        this.description = description;
     }
 
+
+    public Product(ProductInfo productInfo) {
+        this.name = productInfo.getName();
+        this.brand = productInfo.getBrand();
+        this.price = productInfo.getPrice();
+        this.availability = productInfo.getAvailability();
+        this.description = productInfo.getDescription();
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public boolean isAvailable() {
         return availability > 0;

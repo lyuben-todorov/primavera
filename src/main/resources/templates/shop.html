@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.1.0/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.1.0/js/bootstrap.min.js}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/5.1.0/css/all.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+
+    <title>Primavera</title>
+</head>
+<body>
+
+<table>
+    <tr>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <th>IN STOCK</th>
+    </tr>
+    <tr th:each="hookah : ${hookahList}">
+        <td th:text="${hookah.name}"></td>
+        <td th:text="${hookah.brand}"></td>
+        <td th:text="${hookah.price}"></td>
+    </tr>
+</table>
+
+</body>
+</html>
