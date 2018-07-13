@@ -1,13 +1,12 @@
 package com.lyuben.primavera.domain.product;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-
-@MappedSuperclass
-@DiscriminatorColumn(name = "DISCRIMINATOR", discriminatorType = DiscriminatorType.STRING)
-@DiscriminatorValue("USER")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Product {
+@Entity
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -88,4 +87,5 @@ public abstract class Product {
     public void setAvailability(int availability) {
         this.availability = availability;
     }
+
 }
