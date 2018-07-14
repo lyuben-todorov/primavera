@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <html lang="en">
 <head>
@@ -9,26 +10,49 @@
 
 
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.1.0/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.1.0/js/bootstrap.min.js}"/>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/5.1.0/css/all.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/shoppage.css}"/>
 
-    <title>Primavera</title>
+    <title>Shop</title>
 </head>
 <body>
+<nav class="navbar sticky-top navbar-light bg-dark">
+    <a class="navbar-brand" href="#">
+        <img th:src="@{/img/logo-no-text.png}" width="30" height="30" class="d-inline-block align-top" alt="">
+        <span class="text-white">Primavera</span>
+    </a>
 
-<table>
-    <tr>
-        <th>NAME</th>
-        <th>PRICE</th>
-        <th>IN STOCK</th>
-    </tr>
-    <tr th:each="hookah : ${hookahList}">
-        <td th:text="${hookah.name}"></td>
-        <td th:text="${hookah.brand}"></td>
-        <td th:text="${hookah.price}"></td>
-    </tr>
-</table>
+    <div sec:authorize="isAuthenticated()">
+        <a class="text-white" th:href="@{/auth_logout}">Logout</a>
+    </div>
+    <div sec:authorize="!isAuthenticated()">
+        <a class="text-white" th:href="@{/login}">Login</a>
+    </div>
+</nav>
+
+<!-- show rows -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div th:each="product : ${productList}" class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <a href="#"><img class="card-img-top" th:src="@{/img/hook-placeholder.jpg}" alt=""></a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="#" th:text="${product.name}"></a>
+                            </h4>
+                            <h5 th:text="${product.price}"></h5>
+                            <p class="card-text" th:text="${product.description}"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/4.1.0/js/bootstrap.min.js}"></script>
 
 </body>
 </html>

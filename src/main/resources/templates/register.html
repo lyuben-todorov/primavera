@@ -15,16 +15,20 @@
 
 
 <body class="text-center">
-
+<nav class="navbar sticky-top navbar-light bg-dark">
+    <a class="navbar-brand" href="#">
+        <img th:src="@{/img/logo-no-text.png}" width="30" height="30" class="d-inline-block align-top" alt="">
+        <span class="text-white">Primavera</span>
+    </a>
+</nav>
 <div class="justify-content-center">
 
     <div th:if="${param.success}">
-        <div class="alert alert-info bg-transparent">
+        <div class="alert alert-info bg-info">
             You've successfully registered!
         </div>
     </div>
     <form class="form-signup" th:action="@{/register}" th:object="${user}" method="post">
-        <img class="mb-2 img-fluid w-100 h-100" th:src="@{/img/landinglogo1.png}">
         <h1 class="h3 mb-1font-weight-normal">Please register</h1>
 
         <p class="alert alert-danger"
@@ -35,17 +39,17 @@
 
         <!--firstname-->
 
-        <div class="
-        " th:classappend="${#fields.hasErrors('firstName')}? 'has-error':''">
+        <div class="" th:classappend="${#fields.hasErrors('firstName')}? 'has-error':''">
 
             <label for="firstName" class="sr-only control-label">First Name</label>
             <input id="firstName" class="form-control" placeholder="First Name" required="required"
                    th:field="*{firstName}"/>
 
 
-            <span class="badge badge-pill badge-dark"
-                  th:each="error: ${#fields.errors('firstName')}"
-                  th:text="${error}">Validation error</span>
+            <div class="invalid-feedback"
+                 th:each="error: ${#fields.errors('firstName')}"
+                 th:text="${error}">Validation error
+            </div>
         </div>
 
         <!--lastname-->
