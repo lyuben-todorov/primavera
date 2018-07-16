@@ -2,7 +2,7 @@ package com.lyuben.primavera.config;
 
 import com.lyuben.primavera.handler.AuthenticationSuccessHandlerImpl;
 import com.lyuben.primavera.handler.LogoutSuccessHandlerImpl;
-import com.lyuben.primavera.service.user.UserService;
+import com.lyuben.primavera.service.base.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -42,7 +42,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/css/**",
                             "/img/**",
                             "/images/**",
-                            "/webjars/**").permitAll()
+                            "/webjars/**",
+                            "/admin/**").permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()

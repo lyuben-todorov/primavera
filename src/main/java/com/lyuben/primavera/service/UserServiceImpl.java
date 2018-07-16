@@ -1,8 +1,9 @@
-package com.lyuben.primavera.service.user;
+package com.lyuben.primavera.service;
 
 import com.lyuben.primavera.domain.auth.Role;
 import com.lyuben.primavera.domain.auth.User;
 import com.lyuben.primavera.repository.UserRepository;
+import com.lyuben.primavera.service.base.UserService;
 import com.lyuben.primavera.web.dto.UserRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

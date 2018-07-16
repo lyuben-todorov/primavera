@@ -1,4 +1,4 @@
-package com.lyuben.primavera.service.user;
+package com.lyuben.primavera.service.base;
 
 import com.lyuben.primavera.domain.auth.User;
 import com.lyuben.primavera.web.dto.UserRegistrationDto;

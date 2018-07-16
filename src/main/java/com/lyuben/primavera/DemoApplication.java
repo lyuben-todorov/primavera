@@ -1,8 +1,7 @@
 package com.lyuben.primavera;
 
-import com.lyuben.primavera.domain.product.Product;
-import com.lyuben.primavera.domain.product.ProductInfo;
-import com.lyuben.primavera.repository.ProductRepository;
+import com.lyuben.primavera.domain.Category;
+import com.lyuben.primavera.service.CategoryServiceImpl;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -21,21 +20,12 @@ public class DemoApplication {
     }
 
     @Bean
-    public CommandLineRunner commandLineRunner(ProductRepository productRepository) {
+    public CommandLineRunner commandLineRunner(CategoryServiceImpl categoryService) {
         return (args) -> {
-            Log loger = LogFactory.getLog(this.getClass());
+            categoryService.save(new Category("hook"));
+            categoryService.save(new Category("hook2"));
+            categoryService.save(new Category("bong"));
 
-
-            ProductInfo p1 = new ProductInfo("Hook1", "lorem", 2, 50, "desc");
-
-            ProductInfo p2 = new ProductInfo("Hook2", "lorem", 2, 50, "desc");
-
-            Product b1 = new Product(p1);
-            productRepository.save(b1);
-
-            productRepository.save(new Product(p2));
-
-            productRepository.findAll().forEach(product -> loger.warn(product.getName()));
         };
     }
 }

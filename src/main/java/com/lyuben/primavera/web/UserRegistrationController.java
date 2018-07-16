@@ -1,7 +1,7 @@
 package com.lyuben.primavera.web;
 
 import com.lyuben.primavera.domain.auth.User;
-import com.lyuben.primavera.service.user.UserService;
+import com.lyuben.primavera.service.base.UserService;
 import com.lyuben.primavera.web.dto.UserRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
