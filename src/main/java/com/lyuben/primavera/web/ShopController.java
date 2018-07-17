@@ -23,16 +23,6 @@ public class ShopController {
     @Autowired
     CategoryService categoryService;
 
-    @RequestMapping(value = "/sortBy")
-    public String selectCategory(Model model,
-                                 @RequestParam(value = "id", defaultValue = "1") String categoryId) {
-
-        List<Product> productList = productService.findByCategoryId(Long.parseLong(categoryId));
-        List<Category> categoryList = categoryService.findAll();
-        model.addAttribute(categoryList);
-        model.addAttribute(productList);
-        return "shop";
-    }
 
     @GetMapping(value = "")
     public String selectAll(Model model) {
@@ -41,5 +31,30 @@ public class ShopController {
         model.addAttribute(productList);
         model.addAttribute(categoryList);
         return "shop";
+    }
+
+    @RequestMapping(value = "/sortBy")
+    public String selectCategory(Model model,
+                                 @RequestParam(value = "categoryId") String categoryId) {
+
+        List<Product> productList = productService.findByCategoryId(Long.parseLong(categoryId));
+        List<Category> categoryList = categoryService.findAll();
+        model.addAttribute(categoryList);
+        model.addAttribute(productList);
+        model.addAttribute(categoryService.findById(Long.parseLong(categoryId)));
+        return "shop";
+    }
+
+    @RequestMapping(value = "**/product")
+    public String selectProduct(Model model,
+                                @RequestParam(value = "productId") String productId) {
+        Product product = productService.findById(Long.parseLong(productId));
+
+        List<Category> categoryList = categoryService.findAll();
+
+        model.addAttribute(categoryList);
+        model.addAttribute(product);
+        return "shop/product";
+
     }
 }

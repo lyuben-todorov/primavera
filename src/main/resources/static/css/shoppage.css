@@ -9,6 +9,18 @@ body {
 
 }
 
+.breadcrumb {
+    background-color: grey;
+}
+
+.breadcrumb-shop {
+    color: whitesmoke;
+}
+
+.breadcrumb-item {
+    font-size: 1rem;
+}
+
 /*
  * Sidebar
  */
@@ -19,6 +31,7 @@ body {
 }
 
 .sidebar {
+    background-color: #C05746;
     font-weight: bold;
     font-size: 1.5rem;
     position: fixed;
@@ -62,4 +75,20 @@ body {
 .sidebar-heading {
     font-size: .75rem;
     text-transform: uppercase;
+}
+
+/*
+ * card
+ */
+
+.card-body {
+    background-color: #C05746;
+}
+
+.card-title {
+    color: #1B2F33;
+}
+
+.card {
+    background-color: grey;
 }
