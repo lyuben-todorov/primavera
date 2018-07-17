@@ -18,7 +18,7 @@
 </head>
 <body>
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" th:href="@{/shop/}">
         <img th:src="@{/img/logo-no-text.png}" width="30" height="30" class="d-inline-block align-top" alt="">
         <span class="text-white">Primavera</span>
     </a>
@@ -67,13 +67,41 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a class="breadcrumb-shop" th:href="@{/shop/}">Shop</a></li>
                     <li th:if="${param.categoryId != null}" class="breadcrumb-item font-weight-bold">
-                        <a th:text="${product.category.name}"></a>
+                        <a th:href="@{/shop/sortBy(categoryId = ${product.categoryId})}"
+                           th:text="${product.category.name}"></a>
                     </li>
                     <li th:if="${param.productId != null}" class="breadcrumb-item font-weight-bold">
                         <a th:text="${product.name}"></a>
                     </li>
                 </ol>
             </nav>
+
+            <div class="container">
+                <h1 class="font-weight-bold" th:text="${product.name}"></h1>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <a th:href="@{/shop/sortBy/product(categoryId = ${product.categoryId}, productId = ${product.id})}"><img
+                                class="img-fluid product-image rounded"
+                                th:src="@{/img/placeholders/hook-placeholder-3-tp.png}"
+                                alt=""></a>
+                    </div>
+                    <div class="col-sm-6 ">
+                        <div class="card text-white mb-3">
+                            <div class="card-body">
+                                <h5 class="card-title" th:text="${product.brand}"></h5>
+                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+                                    pellentesque libero vel erat imperdiet facilisis. Suspendisse ultrices, ex sit amet
+                                    auctor placerat, augue neque sollicitudin arcu, in pretium ligula ligula nec magna.
+                                    In eu convallis sem, a dapibus mauris. Vestibulum pulvinar ut quam ac mollis. Ut
+                                    ornare eget risus vitae laoreet. Pellentesque tortor dolor, luctus ac bibendum
+                                    auctor, egestas at orci. Phasellus condimentum quam vel massa tincidunt pharetra.
+                                    Phasellus venenatis erat tincidunt est lacinia, quis ultrices nulla mollis.</p>
+                                <button type="button" href="" class="btn btn-secondary">Purchase</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
         </main>

@@ -1,6 +1,7 @@
 package com.lyuben.primavera.web;
 
-import com.lyuben.primavera.service.base.ProductService;
+import com.lyuben.primavera.service.ProductServiceImpl;
+import com.lyuben.primavera.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AdminController {
 
     @Autowired
-    ProductService productService;
+    ProductServiceImpl productService;
+    @Autowired
+    UserServiceImpl userService;
 
     @GetMapping("/admin/orders")
     public String orders(Model model) {
@@ -20,6 +23,7 @@ public class AdminController {
 
     @GetMapping("/admin/customers")
     public String customers(Model model) {
+        model.addAttribute(userService.findAll());
         return "admin/customers";
     }
 

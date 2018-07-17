@@ -44,7 +44,7 @@
 
 <div class="container-fluid">
     <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <nav class="col-md-2 d-none d-md-block sidebar">
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
@@ -72,30 +72,30 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
 
+                <table class="table table-dark">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Brand</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Availability</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="product : ${productList}">
+                        <th th:text="${product.id}" th:href="@{/shop/product(productId = ${product.id})}"
+                            scope="row"></th>
+                        <td th:text="${product.name}"></td>
+                        <td th:text="${product.brand}"></td>
+                        <td th:text="${product.category.name}"></td>
+                        <td th:text="${product.price}"></td>
+                        <td th:text="${product.availability}"></td>
+                    </tr>
 
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="row">
-                                <div th:each="product : ${productList}" class="col-lg-4 col-md-6 mb-4">
-                                    <div class="card h-100">
-                                        <a href="#"><img class="card-img-top" th:src="@{/img/hook-placeholder.jpg}"
-                                                         alt=""></a>
-                                        <div class="card-body">
-                                            <h4 class="card-title">
-                                                <a href="#" th:text="${product.name}"></a>
-                                            </h4>
-                                            <h5 th:text="${product.price}"></h5>
-                                            <p class="card-text" th:text="${product.description}"></p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
+                    </tbody>
+                </table>
             </div>
         </main>
     </div>

@@ -5,7 +5,7 @@ body {
 
 .container {
     margin-top: 20px;
-    width: 860px;
+    width: 1000px;
 
 }
 
@@ -33,7 +33,7 @@ body {
 .sidebar {
     background-color: #C05746;
     font-weight: bold;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -78,17 +78,25 @@ body {
 }
 
 /*
- * card
+ * product card
  */
 
-.card-body {
-    background-color: #C05746;
+.card-title {
+    color: #F7EE7F;
 }
 
-.card-title {
-    color: #1B2F33;
+.card-subtitle {
+    color: #F1A66A;
 }
 
 .card {
-    background-color: grey;
+    background-color: #C05746;
+}
+
+/*
+ * product
+ */
+
+.product-image {
+    height: 60%;
 }

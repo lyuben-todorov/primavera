@@ -1,12 +1,39 @@
 body {
-    font-size: .875rem;
+    background-color: gray;
+
+}
+
+.container {
+    margin-top: 20px;
+    width: 1000px;
+
+}
+
+.breadcrumb {
     background-color: grey;
 }
+
+.breadcrumb-shop {
+    color: whitesmoke;
+}
+
+.breadcrumb-item {
+    font-size: 1rem;
+}
+
 /*
  * Sidebar
  */
 
+.bullet {
+    size: 2px;
+
+}
+
 .sidebar {
+    background-color: #C05746;
+    font-weight: bold;
+    font-size: 1.2rem;
     position: fixed;
     top: 0;
     bottom: 0;
@@ -51,42 +78,30 @@ body {
 }
 
 /*
- * Navbar
+ * product card
  */
 
-.navbar-brand {
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-    font-size: 1rem;
-    background-color: rgba(0, 0, 0, .25);
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
+.card-title {
+    color: #F7EE7F;
 }
 
-.navbar .form-control {
-    padding: .75rem 1rem;
-    border-width: 0;
-    border-radius: 0;
+.card-subtitle {
+    color: #F1A66A;
 }
 
-.form-control-dark {
-    color: #fff;
-    background-color: rgba(255, 255, 255, .1);
-    border-color: rgba(255, 255, 255, .1);
+.card {
+    background-color: #C05746;
 }
 
-.form-control-dark:focus {
-    border-color: transparent;
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
-}
 
 /*
- * Utilities
+ * product
  */
 
-.border-top {
-    border-top: 1px solid #e5e5e5;
+.product-image {
+    height: 60%;
 }
 
-.border-bottom {
-    border-bottom: 1px solid #e5e5e5;
+.col-sm-5 {
+    text-align: center;
 }

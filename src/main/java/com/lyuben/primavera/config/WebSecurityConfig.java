@@ -42,9 +42,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/css/**",
                             "/img/**",
                             "/images/**",
-                            "/webjars/**",
-                            "/admin/**").permitAll()
+                            "/webjars/**").permitAll()
                     .anyRequest().authenticated()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/admin/**").access("hasAnyAuthority('ADMIN')")
                 .and()
                     .formLogin()
                         .loginPage("/login")
