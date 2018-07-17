@@ -36,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             "/",
                             "/home",
                             "/register",
-                            "/shop",
+                            "/shop/**",
                             "/resources/**",
                             "/js/**",
                             "/css/**",
@@ -48,7 +48,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .formLogin()
                         .loginPage("/login")
-                        .successHandler(authenticationSuccessHandler)
+
+                .successHandler(authenticationSuccessHandler)
                             .permitAll()
                 .and()
                     .logout()

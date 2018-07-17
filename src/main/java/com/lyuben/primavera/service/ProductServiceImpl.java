@@ -1,6 +1,5 @@
 package com.lyuben.primavera.service;
 
-import com.lyuben.primavera.domain.Category;
 import com.lyuben.primavera.domain.product.Product;
 import com.lyuben.primavera.repository.ProductRepository;
 import com.lyuben.primavera.service.base.ProductService;
@@ -27,8 +26,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findByCategory(Category category) {
-        return productRepository.findByCategory(category);
+    public List<Product> findByCategoryId(Long Id) {
+        return productRepository.findByCategoryId(Id);
     }
 
     @Override

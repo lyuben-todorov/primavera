@@ -74,10 +74,10 @@ public class AuthenticationSuccessHandlerImpl
 
         if (isUser) {
             //redirect users
-            return "/home";
+            return "/shop/categoryId";
         } else if (isAdmin) {
             //redirect users w/ elevated permissions
-            return "/home";
+            return "/shop/categoryId";
         } else {
             throw new IllegalStateException();
         }

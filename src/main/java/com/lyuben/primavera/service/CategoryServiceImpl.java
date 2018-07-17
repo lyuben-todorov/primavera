@@ -19,6 +19,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    public Category findById(Long Id) {
+        return categoryRepository.findById(Id).get();
+    }
+
+    @Override
     public List<Category> findAll() {
         return categoryRepository.findAll();
     }

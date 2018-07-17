@@ -16,8 +16,20 @@ public class Product {
     private String description;
     @ManyToOne
     private Category category;
+    @Column(name = "private_category")
+    private Long categoryId;
 
     public Product() {
+    }
+
+    public Product(String name, String brand, int price, int availability, String description, Category category, Long categoryId) {
+        this.name = name;
+        this.brand = brand;
+        this.price = price;
+        this.availability = availability;
+        this.description = description;
+        this.category = category;
+        this.categoryId = categoryId;
     }
 
     public Product(String name, String brand, int price, int availability, String description, Category category) {
@@ -27,8 +39,31 @@ public class Product {
         this.availability = availability;
         this.description = description;
         this.category = category;
+        setCategoryId();
     }
 
+    public Product(ProductInfo productInfo) {
+        this.name = productInfo.getName();
+        this.brand = productInfo.getBrand();
+        this.price = productInfo.getPrice();
+        this.availability = productInfo.getAvailability();
+        this.description = productInfo.getDescription();
+        this.category = productInfo.getCategory();
+        setCategoryId(category.getId());
+    }
+
+
+    private void setCategoryId() {
+        this.categoryId = category.getId();
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
 
     public Category getCategory() {
         return category;
