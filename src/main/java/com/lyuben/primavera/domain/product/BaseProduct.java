@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 
+@Deprecated
 @MappedSuperclass
 public abstract class BaseProduct {
     @Id
